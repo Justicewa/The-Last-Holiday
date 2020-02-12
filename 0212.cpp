@@ -766,12 +766,12 @@ int main()
 
 #endif
 
-#if 1
+#if 0
 //0713 2
 
 bool isPrime(int num)
 {
-	int tmp = sqrt(num);
+	int tmp = (int)sqrt(num);
 	for (int i = 2; i <= tmp; i++)
 	{
 		if (num%i == 0)
@@ -782,9 +782,90 @@ bool isPrime(int num)
 
 int main()
 {
-	
+	int num, half, i;
+	while (cin >> num)
+	{
+		half = num / 2;
+		for (i = half; i > 0; i--)
+		{
+			if (isPrime(i) && isPrime(num - i))
+				break;
+		}
+		cout << i << endl << num - i << endl;
+	}
 
 	return 0;
+}
+
+#endif
+
+#if 0
+//0715 1
+
+int main()
+{
+	string str;
+	while (getline(cin, str))
+	{
+		int count = 0;
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (str[i] == '"')
+			{
+				do 
+				{
+					i++;
+				} while (str[i] != '"');
+			}
+		}
+
+		cout << count + 1 << endl;
+		int flag = 1;
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (str[i] == '"')
+				flag ^= 1;
+			if (str[i] != ' ' && str[i] != '"')
+				cout << str[i];
+			if (str[i] == ' ' && (!flag))
+				cout << str[i];
+			if (str[i] == ' ' && flag)
+				cout << endl;
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+#endif
+
+#if 0
+//0715 2
+
+#endif
+
+#if 1
+//0716 1
+
+int main()
+{
+	int arrary[12] = { 31, 59, 90, 120, 151, 181, 21, 243, 273, 304, 334, 365 };
+	int year, month, day, sum = 0;
+	while (cin >> year >> month >> day)
+	{
+		sum = 0;
+		sum += arrary[month - 2];
+		sum += day;
+		if (month > 2)
+		{
+			if ((year % 4 == 0 && year % 100 != 0)
+								|| year % 400 == 0)
+			{
+				sum += 1;
+			}
+		}
+		cout << sum << endl;
+	}
 }
 
 #endif
